@@ -2,14 +2,14 @@
 # Post tasks
 
 - name: Perform DNF package cleanup
-  dnf:
-      autoremove: yes
+  ansible.builtin.dnf:
+    autoremove: yes
   changed_when: no
 
 - name: flush handlers
-  meta: flush_handlers
+  ansible.builtin.meta: flush_handlers
 
 - name: Reboot host
-  reboot:
+  ansible.builtin.reboot:
   when:
-  - not rhel8cis_skip_reboot
+    - not rhel8cis_skip_reboot

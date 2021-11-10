@@ -552,7 +552,7 @@ rhel8cis_int_gid: 1000
 # Session timeout setting file (TMOUT setting can be set in multiple files)
 # Timeout value is in seconds. (60 seconds * 10 = 600)
 rhel8cis_shell_session_timeout:
-    file: /etc/profile.d/tmout.sh
+    ansible.builtin.file: /etc/profile.d/tmout.sh
     timeout: 600
 # RHEL-08-5.4.1.5 Allow ansible to expire password for account with a last changed date in the future. False will just display users in violation, true will expire those users passwords
 rhel8cis_futurepwchgdate_autofix: true
@@ -597,10 +597,10 @@ copy_goss_from_path: /some/accessible/path
 rhel8cis_audit_file_git: "https://github.com/ansible-lockdown/{{ benchmark }}-Audit.git"
 rhel8cis_audit_git_version: main
 
-# copy:
+# ansible.builtin.copy:
 rhel8cis_audit_local_copy: "some path to copy from"
 
-# get_url:
+# ansible.builtin.get_url:
 rhel8cis_audit_files_url: "some url maybe s3?"
 
 # Where the goss audit configuration will be stored

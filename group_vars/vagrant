@@ -12,16 +12,16 @@ rhel8cis_aide_cron:
   aide_weekday: '*'
 
 rhel8cis_sshd:
-    clientalivecountmax: 3
-    clientaliveinterval: 300
-    ciphers: 'aes256-ctr,aes192-ctr,aes128-ctr'
-    macs: 'hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com'
-    logingracetime: 60
-    # - make sure you understand the precedence when working with these values!!
-    allowusers: vagrant
-    allowgroups: vagrant
-    denyusers: root
-    denygroups: root
+  clientalivecountmax: 3
+  clientaliveinterval: 300
+  ciphers: 'aes256-ctr,aes192-ctr,aes128-ctr'
+  macs: 'hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com'
+  logingracetime: 60
+  # - make sure you understand the precedence when working with these values!!
+  allowusers: vagrant
+  allowgroups: vagrant
+  denyusers: root
+  denygroups: root
 
 # Vagrant can touch code that Docker cannot
 rhel8cis_skip_for_travis: false

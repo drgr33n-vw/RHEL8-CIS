@@ -65,7 +65,7 @@ examples:
       path: "{{ item }}"
       format: json
       output_file : /my/output/{{ item }}
-    with_items: "{{ goss_files }}"
+    loop: "{{ goss_files }}"
 '''
 
 
