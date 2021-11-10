@@ -5,9 +5,8 @@
     - name: "5.5.2 | L1 | Ensure system accounts are secured | Set nologin"
       ansible.builtin.user:
         name: "{{ item.id }}"
-        ansible.builtin.shell: /usr/sbin/nologin
-      loop:
-        - "{{ rhel8cis_passwd }}"
+        shell: /usr/sbin/nologin
+      loop: "{{ rhel8cis_passwd }}"
       when:
         - item.id != "root"
         - item.id != "sync"
@@ -21,8 +20,7 @@
       ansible.builtin.user:
         name: "{{ item.id }}"
         password_lock: true
-      loop:
-        - "{{ rhel8cis_passwd }}"
+      loop: "{{ rhel8cis_passwd }}"
       when:
         - item.id != "halt"
         - item.id != "shutdown"
@@ -81,11 +79,11 @@
         regexp: '(^\s+umask) 002'
         replace: '\1 027'
 
-      - name: "5.5.5 | L1 | PATCH | Ensure default user umask is 027 or more restrictive | Set umask for /etc/profile"
-        ansible.builtin.replace:
-          path: /etc/profile
-          regexp: '(^\s+umask) 002'
-          replace: '\1 027'
+    - name: "5.5.5 | L1 | PATCH | Ensure default user umask is 027 or more restrictive | Set umask for /etc/profile"
+      ansible.builtin.replace:
+        path: /etc/profile
+        regexp: '(^\s+umask) 002'
+        replace: '\1 027'
   when:
     - rhel8cis_rule_5_5_5
   tags:

@@ -19,19 +19,19 @@
         sysctl_set: yes
         ignoreerrors: yes
 
-      - name: "1.6.1 | L1 | PATCH | Ensure core dumps are restricted | if systemd coredump"
-        ansible.builtin.lineinfile:
-          path: /etc/systemd/coredump.conf
-          regexp: "{{ item.regexp }}"
-          line: "{{ item.regexp }}{{ item.line }}"
-          state: present
-        loop:
-          - {'regexp': 'Storage=', 'line': 'none'}
-          - {'regexp': 'ProcessSizeMax=', 'line': '0'}
-        notify:
-          - systemd_daemon_reload
-        when:
-          - systemd_coredump.stat.exists
+    - name: "1.6.1 | L1 | PATCH | Ensure core dumps are restricted | if systemd coredump"
+      ansible.builtin.lineinfile:
+        path: /etc/systemd/coredump.conf
+        regexp: "{{ item.regexp }}"
+        line: "{{ item.regexp }}{{ item.line }}"
+        state: present
+      loop:
+        - {'regexp': 'Storage=', 'line': 'none'}
+        - {'regexp': 'ProcessSizeMax=', 'line': '0'}
+      notify:
+        - systemd_daemon_reload
+      when:
+        - systemd_coredump.stat.exists
   when:
     - rhel8cis_rule_1_6_1
   tags:

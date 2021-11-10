@@ -1,5 +1,4 @@
 ---
-
 - name: "Run post_remediation {{ benchmark }} audit"
   goss:
     goss_path: "{{ audit_bin }}"

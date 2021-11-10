@@ -1,9 +1,9 @@
 ---
 - name: |
-  "5.4.1 | L1 | PATCH | Ensure password creation requirements are configured
-   5.4.2 | L1 | PATCH | Ensure lockout for failed password attempts is configured
-   5.4.3 | L1 | PATCH | Ensure password reuse is limited
-   5.4.4 | L1 | PATCH | Ensure password hashing algorithm is SHA-512"
+    5.4.1 | L1 | PATCH | Ensure password creation requirements are configured
+    5.4.2 | L1 | PATCH | Ensure lockout for failed password attempts is configured
+    5.4.3 | L1 | PATCH | Ensure password reuse is limited
+    5.4.4 | L1 | PATCH | Ensure password hashing algorithm is SHA-512
   block:
     - name: "5.4.1 | L1 | PATCH | Ensure password creation requirements are configured | Set pwquality config settings"
       ansible.builtin.lineinfile:
@@ -17,8 +17,8 @@
       when: rhel8cis_rule_5_4_1
 
     - name: |
-      "5.4.1 | L1 | PATCH | Ensure password creation requirements are configured | Set system-auth retry settings
-       5.4.3| L1 | PATCH | Ensure password reuse is limited | Set system-auth remember settings"
+        5.4.1 | L1 | PATCH | Ensure password creation requirements are configured | Set system-auth retry settings
+        5.4.3| L1 | PATCH | Ensure password reuse is limited | Set system-auth remember settings
       ansible.builtin.lineinfile:
         dest: /etc/pam.d/system-auth
         state: present
@@ -63,8 +63,8 @@
       when: rhel8cis_rule_5_4_2
 
     - name: |
-       "5.4.3 | L1 | PATCH | Ensure password reuse is limited | Set system-auth remember remember settings
-        5.4.4 | L1 | PATCH | Ensure password hashing algorithm is SHA-512 | Set system-auth pwhash settings"
+        5.4.3 | L1 | PATCH | Ensure password reuse is limited | Set system-auth remember remember settings
+        5.4.4 | L1 | PATCH | Ensure password hashing algorithm is SHA-512 | Set system-auth pwhash settings
       ansible.builtin.lineinfile:
         dest: /etc/pam.d/system-auth
         state: present
@@ -87,10 +87,10 @@
     # The two steps below were added to keep authconfig from overwritting the above configs. This follows steps from here: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/security_guide/chap-hardening_your_system_with_tools_and_services
     # With the steps below you will score five (5) points lower due to false positive results
     - name: |
-       "5.4.1 | L1 | PATCH | Ensure password creation requirements are configured
+        5.4.1 | L1 | PATCH | Ensure password creation requirements are configured
         5.4.2 | L1 | PATCH | Ensure lockout for failed password attempts is configured
         5.4.3 | L1 | PATCH | Ensure password reuse is limited
-        5.4.4 | L1 | PATCH | Ensure password hashing algorithm is SHA-512"
+        5.4.4 | L1 | PATCH | Ensure password hashing algorithm is SHA-512
       ansible.builtin.copy:
         src: /etc/pam.d/{{ item }}
         dest: /etc/pam.d/{{ item }}-local
@@ -103,10 +103,10 @@
         - "password-auth"
 
     - name: |
-       "5.4.1 | L1 | PATCH | Ensure password creation requirements are configured
+        5.4.1 | L1 | PATCH | Ensure password creation requirements are configured
         5.4.2 | L1 | PATCH | Ensure lockout for failed password attempts is configured
         5.4.3 | L1 | PATCH | Ensure password reuse is limited
-        5.4.4 | L1 | PATCH | Ensure password hashing algorithm is SHA-512"
+        5.4.4 | L1 | PATCH | Ensure password hashing algorithm is SHA-512
       ansible.builtin.file:
         src: /etc/pam.d/{{ item }}-local
         dest: /etc/pam.d/{{ item }}

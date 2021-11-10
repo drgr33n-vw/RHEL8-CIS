@@ -24,7 +24,7 @@
     name: rhnsd
     state: stopped
     enabled: no
-when:
+  when:
     - ansible_distribution == "RedHat"
     - rhnsd_service_status.stdout == "loaded" and not rhel8cis_rhnsd_required
     - rhel8cis_rule_1_2_2
@@ -61,8 +61,7 @@ when:
         name: "{{ item.path }}"
         regexp: "^gpgcheck=0"
         replace: "gpgcheck=1"
-      loop:
-        - "{{ yum_repos.files }}"
+      loop: "{{ yum_repos.files }}"
   when:
     - rhel8cis_rule_1_2_4
   tags:

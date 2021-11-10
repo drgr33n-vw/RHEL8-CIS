@@ -1,0 +1,21 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: "4.3 | L1 | AUDIT | Ensure logrotate is configured | Get logrotate settings"
+      ansible.builtin.find:
+        paths: /etc/logrotate.d/
+      register: log_rotates
+
+    - name: debug
+      debug:
+        var: item.path
+      loop: '{{ log_rotates.files + [{ "path": "/etc/logrotate.conf" }] }}'
+#    - name: "4.3 | L1 | PATCH | Ensure logrotate is configured"
+#      ansible.builtin.replace:
+#        path: "{{ item.path }}"
+#        regexp: '^(\s*)(daily|weekly|monthly|yearly)$'
+#        replace: "\\1{{ rhel8cis_logrotate }}"
+#      loop:
+#        - log_rotates.files
+#        - path: "/etc/logrotate.conf"

@@ -76,8 +76,7 @@
         owner: root
         group: root
         mode: 0600
-      loop:
-        - "{{ rhel8cis_5_2_3_ssh_private_host_key.files }}"
+      loop: "{{ rhel8cis_5_2_3_ssh_private_host_key.files }}"
   when:
     - rhel8cis_rule_5_2_3
   tags:
@@ -102,8 +101,7 @@
         owner: root
         group: root
         mode: 0644
-      loop:
-        - "{{ rhel8cis_5_2_4_ssh_public_host_key.files }}"
+      loop: "{{ rhel8cis_5_2_4_ssh_public_host_key.files }}"
   when:
     - rhel8cis_rule_5_2_4
   tags:

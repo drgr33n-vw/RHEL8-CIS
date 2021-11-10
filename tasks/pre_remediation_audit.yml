@@ -1,5 +1,4 @@
 ---
-
 - name: Setup the audit
   ansible.builtin.include_tasks: LE_audit_setup.yml
   when:
@@ -59,11 +58,11 @@
         path: "{{ audit_bin }}"
       register: goss_available
 
-  - name: If audit ensure goss is available
-    ansible.builtin.assert:
-      msg: "Audit has been selected: unable to find goss binary at {{ audit_bin }}"
-    when:
-      - not goss_available.stat.exists
+    - name: If audit ensure goss is available
+      ansible.builtin.assert:
+        msg: "Audit has been selected: unable to find goss binary at {{ audit_bin }}"
+      when:
+        - not goss_available.stat.exists
   when:
     - run_audit
 

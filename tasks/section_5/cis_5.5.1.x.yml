@@ -63,8 +63,7 @@
 
     - name: "5.5.1.4 | L1 | PATCH | Ensure inactive password lock is 30 days or less | Apply Inactive setting to existing accounts"
       ansible.builtin.command: chage --inactive {{ rhel8cis_inactivelock.lock_days }} "{{ item }}"
-      loop:
-        - "{{ rhel_08_5_5_1_4_audit.stdout_lines }}"
+      loop: "{{ rhel_08_5_5_1_4_audit.stdout_lines }}"
   when:
     - rhel8cis_rule_5_5_1_4
   tags:
@@ -106,8 +105,7 @@
       when:
         - rhel8cis_5_5_1_5_user_list | length > 0
         - rhel8cis_futurepwchgdate_autofix
-      loop:
-        - "{{ rhel8cis_5_5_1_5_user_list.stdout_lines }}"
+      loop: "{{ rhel8cis_5_5_1_5_user_list.stdout_lines }}"
   when:
     - rhel8cis_rule_5_5_1_5
   tags:

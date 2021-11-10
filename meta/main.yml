@@ -6,10 +6,10 @@ galaxy_info:
   license: MIT
   role_name: rhel8_cis
   min_ansible_version: 2.9.0
-    platforms:
-      - name: EL
-        versions:
-          - 8
+  platforms:
+    - name: EL
+      versions:
+        - 8
   galaxy_tags:
     - system
     - security
