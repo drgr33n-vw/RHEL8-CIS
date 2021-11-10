@@ -468,7 +468,7 @@ rhel8cis_auditd:
   space_left_action: email
   action_mail_acct: root
   admin_space_left_action: halt
-   ax_log_file_action: keep_logs
+  max_log_file_action: keep_logs
 
 rhel8cis_logrotate: "daily"
 
@@ -539,7 +539,7 @@ rhel8cis_vartmp:
   source: /tmp
   fstype: none
   opts: "defaults,nodev,nosuid,noexec,bind"
-   enabled: no
+  enabled: no
 ## PAM
 rhel8cis_pam_password:
   minlen: "14"
